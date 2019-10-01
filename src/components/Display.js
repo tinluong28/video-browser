@@ -7,7 +7,7 @@ const Display = ({video}) => {
 
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`
     return(
-        <div>
+        <div id="video">
             <div className="ui embed">
                 <iframe title='video player' src={videoSrc} frameBorder="0"></iframe>
             </div>

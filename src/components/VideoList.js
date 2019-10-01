@@ -4,7 +4,7 @@ import VideoItem from './VideoItem';
 const VideoList = props => {
     const renderedList = props.videos.map(v => {
         return(
-            <VideoItem key={v.id.videoId} video={v} VideoClick={props.VideoClick}/>
+                <VideoItem key={v.id.videoId} video={v} VideoClick={props.VideoClick}/>
         )
     })
     return(

@@ -12,9 +12,10 @@ class App extends React.Component{
         term: '',
     }
     componentDidMount(){
-        this.onTermSubmit('building')
+        this.onTermSubmit('new videos')
     }
     onTermSubmit = async (term) => {
+        console.log('loaded')
         this.setState({term: term});
         const response = await youtube.get('/search',{
             params: {
@@ -23,10 +24,10 @@ class App extends React.Component{
             }
         })
         this.setState({videos: response.data.items});
-        this.setState({selected: this.state.videos[0]})
+        if(this.state.selected == null) this.setState({selected: this.state.videos[0]})
     };
     showMore = () => {
-        this.setState({max: this.state.max + 5});
+        this.setState({max: this.state.max + 5})
         this.onTermSubmit(this.state.term);
     }
     onVideoClick = (v) => {
@@ -43,7 +44,7 @@ class App extends React.Component{
                         </div>
                         <div className="six wide column">
                             <VideoList videos = {this.state.videos} VideoClick={this.onVideoClick}/>
-                            <p style={{color: "#0E6EB8", cursor: "pointer"}} onClick={this.showMore}>Show More...</p>
+                            {this.state.max < 20 ? (<p style={{color: "#0E6EB8", cursor: "pointer"}} onClick={this.showMore}>Show More...</p>) : ''}
                         </div>
                     </div>
                 </div>
